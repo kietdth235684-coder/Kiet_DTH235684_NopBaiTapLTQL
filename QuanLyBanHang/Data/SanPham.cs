@@ -9,7 +9,6 @@ namespace QuanLyBanHang.Data
 {
     public class SanPham
     {
-
         public int ID { get; set; }
         public int HangSanXuatID { get; set; }
         public int LoaiSanPhamID { get; set; }
