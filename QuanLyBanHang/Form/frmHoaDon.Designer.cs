@@ -152,6 +152,7 @@
             btnXuat.TabIndex = 6;
             btnXuat.Text = "Xuất Excel...";
             btnXuat.UseVisualStyleBackColor = true;
+            btnXuat.Click += btnXuat_Click;
             // 
             // btnTimKiem
             // 
@@ -172,7 +173,6 @@
             btnThoat.TabIndex = 4;
             btnThoat.Text = "Thoát";
             btnThoat.UseVisualStyleBackColor = true;
-            btnThoat.Click += btnThoat_Click;
             // 
             // btnXoa
             // 
@@ -184,7 +184,6 @@
             btnXoa.TabIndex = 3;
             btnXoa.Text = "Xóa";
             btnXoa.UseVisualStyleBackColor = true;
-            btnXoa.Click += btnXoa_Click;
             // 
             // btnSua
             // 
@@ -195,7 +194,6 @@
             btnSua.TabIndex = 2;
             btnSua.Text = "Sửa...";
             btnSua.UseVisualStyleBackColor = true;
-            btnSua.Click += btnSua_Click;
             // 
             // btnInHoaDon
             // 
@@ -217,7 +215,7 @@
             btnLapHoaDon.TabIndex = 0;
             btnLapHoaDon.Text = "Lập hóa đơn mới...";
             btnLapHoaDon.UseVisualStyleBackColor = true;
-            btnLapHoaDon.Click += btnLapHoaDon_Click;
+            btnLapHoaDon.Click += btnNhap_Click;
             // 
             // frmHoaDon
             // 

@@ -37,6 +37,9 @@
             ID = new DataGridViewTextBoxColumn();
             TenLoai = new DataGridViewTextBoxColumn();
             tableLayoutPanel2 = new TableLayoutPanel();
+            tableLayoutPanel5 = new TableLayoutPanel();
+            btnXuat = new Button();
+            btnNhap = new Button();
             label1 = new Label();
             txtTenLoai = new TextBox();
             panel1 = new Panel();
@@ -53,6 +56,7 @@
             tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             tableLayoutPanel2.SuspendLayout();
+            tableLayoutPanel5.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -84,7 +88,7 @@
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Thông tin loại sản phẩm";
-            groupBox1.Enter += this.groupBox1_Enter;
+            groupBox1.Enter += groupBox1_Enter;
             // 
             // tableLayoutPanel3
             // 
@@ -201,6 +205,7 @@
             tableLayoutPanel2.ColumnCount = 2;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25.3886013F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 74.6114F));
+            tableLayoutPanel2.Controls.Add(tableLayoutPanel5, 0, 1);
             tableLayoutPanel2.Controls.Add(label1, 0, 0);
             tableLayoutPanel2.Controls.Add(txtTenLoai, 1, 0);
             tableLayoutPanel2.Controls.Add(panel1, 1, 1);
@@ -213,6 +218,46 @@
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel2.Size = new Size(772, 70);
             tableLayoutPanel2.TabIndex = 0;
+            // 
+            // tableLayoutPanel5
+            // 
+            tableLayoutPanel5.ColumnCount = 2;
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel5.Controls.Add(btnXuat, 1, 0);
+            tableLayoutPanel5.Controls.Add(btnNhap, 0, 0);
+            tableLayoutPanel5.Dock = DockStyle.Fill;
+            tableLayoutPanel5.Location = new Point(3, 38);
+            tableLayoutPanel5.Name = "tableLayoutPanel5";
+            tableLayoutPanel5.RowCount = 1;
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel5.Size = new Size(190, 29);
+            tableLayoutPanel5.TabIndex = 2;
+            // 
+            // btnXuat
+            // 
+            btnXuat.Dock = DockStyle.Fill;
+            btnXuat.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnXuat.Location = new Point(98, 3);
+            btnXuat.Name = "btnXuat";
+            btnXuat.Size = new Size(89, 23);
+            btnXuat.TabIndex = 3;
+            btnXuat.Text = "Xuất";
+            btnXuat.UseVisualStyleBackColor = true;
+            btnXuat.Click += btnXuat_Click;
+            // 
+            // btnNhap
+            // 
+            btnNhap.Dock = DockStyle.Fill;
+            btnNhap.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnNhap.Location = new Point(3, 3);
+            btnNhap.Name = "btnNhap";
+            btnNhap.Size = new Size(89, 23);
+            btnNhap.TabIndex = 2;
+            btnNhap.Text = "Nhập";
+            btnNhap.UseVisualStyleBackColor = true;
+            btnNhap.Click += btnNhap_Click;
             // 
             // label1
             // 
@@ -317,7 +362,7 @@
             Controls.Add(tableLayoutPanel1);
             Name = "frmLoaiSanPham";
             Text = "Loại sản phẩm";
-            Load += this.frmLoaiSanPham_Load;
+            Load += frmLoaiSanPham_Load;
             tableLayoutPanel1.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
@@ -326,6 +371,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel2.PerformLayout();
+            tableLayoutPanel5.ResumeLayout(false);
             panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -350,5 +396,8 @@
         private DataGridView dataGridView;
         private DataGridViewTextBoxColumn ID;
         private DataGridViewTextBoxColumn TenLoai;
+        private TableLayoutPanel tableLayoutPanel5;
+        private Button btnXuat;
+        private Button btnNhap;
     }
 }

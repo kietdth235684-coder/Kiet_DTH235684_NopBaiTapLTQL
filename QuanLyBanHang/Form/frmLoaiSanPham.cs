@@ -1,5 +1,7 @@
 using QuanLyBanHang.Data;
 using System.Windows.Forms;
+using ClosedXML.Excel;
+using System.Data;
 
 namespace QuanLyBanHang
 {
@@ -110,5 +112,109 @@ namespace QuanLyBanHang
         {
 
         }
+
+        private void btnNhap_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "Nh?p d? li?u t? t?p tin Excel";
+            openFileDialog.Filter = "T?p tin Excel|*.xls;*.xlsx";
+            openFileDialog.Multiselect = false;
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    DataTable table = new DataTable();
+                    using (XLWorkbook workbook = new XLWorkbook(openFileDialog.FileName))
+                    {
+                        IXLWorksheet worksheet = workbook.Worksheet(1);
+                        bool firstRow = true;
+                        string readRange = "1:1";
+                        foreach (IXLRow row in worksheet.RowsUsed())
+                        {
+                            // ??c dòng tiêu ?? (dòng ??u tiên)
+                            if (firstRow)
+                            {
+                                readRange = string.Format("{0}:{1}", 1, row.LastCellUsed().Address.ColumnNumber);
+                                foreach (IXLCell cell in row.Cells(readRange))
+                                    table.Columns.Add(cell.Value.ToString());
+                                firstRow = false;
+                            }
+                            else // ??c các dòng n?i dung (các dòng ti?p theo)
+                            {
+                                table.Rows.Add();
+                                int cellIndex = 0;
+                                foreach (IXLCell cell in row.Cells(readRange))
+                                {
+                                    table.Rows[table.Rows.Count - 1][cellIndex] = cell.Value.ToString();
+                                    cellIndex++;
+                                }
+                            }
+                        }
+                        if (table.Rows.Count > 0)
+                        {
+                            foreach (DataRow r in table.Rows)
+                            {
+                                LoaiSanPham lsp = new LoaiSanPham();
+                                lsp.TenLoai = r["TenLoai"].ToString();
+                                context.LoaiSanPham.Add(lsp);
+                            }
+                            context.SaveChanges();
+
+                            MessageBox.Show("?ã nh?p thành công " + table.Rows.Count + " dòng.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            frmLoaiSanPham_Load(sender, e);
+                        }
+                        if (firstRow)
+                            MessageBox.Show("T?p tin Excel r?ng.", "L?i", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "L?i", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+        }
+
+        private void btnXuat_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Title = "Xu?t d? li?u ra t?p tin Excel";
+            saveFileDialog.Filter = "T?p tin Excel|*.xls;*.xlsx";
+            saveFileDialog.FileName = "LoaiSanPham_" + DateTime.Now.ToShortDateString().Replace("/", "_") + ".xlsx";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    DataTable table = new DataTable();
+
+                    table.Columns.AddRange(new DataColumn[2] {
+                new DataColumn("ID", typeof(int)),
+                new DataColumn("TenLoai", typeof(string))
+            });
+
+                    var loaiSanPham = context.LoaiSanPham.ToList();
+                    if (loaiSanPham != null)
+                    {
+                        foreach (var p in loaiSanPham)
+                            table.Rows.Add(p.ID, p.TenLoai);
+                    }
+
+                    using (XLWorkbook wb = new XLWorkbook())
+                    {
+                        var sheet = wb.Worksheets.Add(table, "LoaiSanPham");
+                        sheet.Columns().AdjustToContents();
+                        wb.SaveAs(saveFileDialog.FileName);
+
+                        MessageBox.Show("?ã xu?t d? li?u ra t?p tin Excel thành công.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "L?i", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+        }
+
     }
 }
