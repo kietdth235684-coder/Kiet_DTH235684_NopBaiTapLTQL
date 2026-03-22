@@ -19,6 +19,7 @@ namespace QuanLyBanHang.Reports
         public frmInHoaDon(int maHoaDon = 0)
         {
             InitializeComponent();
+            HelpSupport.DangKy(this);
             id = maHoaDon;
         }
 

@@ -1,3 +1,5 @@
+using QuanLyBanHang.Data;
+
 namespace QuanLyBanHang.Forms
 {
     public partial class frmDangNhap : Form
@@ -5,6 +7,7 @@ namespace QuanLyBanHang.Forms
         public frmDangNhap()
         {
             InitializeComponent();
+            HelpSupport.DangKy(this);
         }
 
         private void btnDangNhap_Click(object sender, EventArgs e)

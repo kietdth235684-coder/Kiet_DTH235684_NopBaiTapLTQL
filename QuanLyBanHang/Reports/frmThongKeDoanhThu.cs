@@ -16,6 +16,7 @@ namespace QuanLyBanHang.Reports
         public frmThongKeDoanhThu()
         {
             InitializeComponent();
+            HelpSupport.DangKy(this);
         }
 
         private void frmThongKeDoanhThu_Load(object sender, EventArgs e)

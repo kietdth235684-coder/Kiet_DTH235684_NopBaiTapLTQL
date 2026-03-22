@@ -13,6 +13,7 @@ namespace QuanLyBanHang.Forms
         public frmKhachHang()
         {
             InitializeComponent();
+            HelpSupport.DangKy(this);
         }
 
         private void BatTatChucNang(bool giaTri)

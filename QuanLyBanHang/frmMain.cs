@@ -23,6 +23,8 @@ namespace QuanLyBanHang
         public frmMain()
         {
             InitializeComponent();
+            // Đăng ký HelpProvider cho frmMain – phím F1 và Ctrl+F1 mở trang hướng dẫn
+            HelpSupport.DangKy(this);
         }
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -191,26 +193,55 @@ namespace QuanLyBanHang
             frm.ShowDialog();
         }
 
+        // ── Helper: mở trang HTML hướng dẫn bằng trình duyệt mặc định ──
+        public static void MoTrangHuongDan()
+        {
+            // Tìm file Help\index.html tương đối so với thư mục exe
+            string exeDir = AppDomain.CurrentDomain.BaseDirectory;
+            // Khi debug: …\bin\Debug\net8.0-windows\  →  lùi 3 cấp về thư mục project
+            string helpFile = Path.Combine(exeDir, "Help", "index.html");
+            if (!File.Exists(helpFile))
+            {
+                // Thử đường dẫn từ thư mục project (khi chạy trong VS)
+                string projectDir = exeDir
+                    .TrimEnd(Path.DirectorySeparatorChar)
+                    .Replace(@"bin\Debug\net8.0-windows", "")
+                    .Replace(@"bin\Release\net8.0-windows", "");
+                helpFile = Path.Combine(projectDir, "Help", "index.html");
+            }
+            if (File.Exists(helpFile))
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = helpFile,
+                    UseShellExecute = true   // mở bằng trình duyệt mặc định
+                });
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy file hướng dẫn.\nĐường dẫn dự kiến:\n" + helpFile,
+                    "Hướng dẫn sử dụng", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
         private void mnuHuongDanSuDung_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Phần mềm Quản lý Bán hàng.\nPhiên bản 1.0\n\nLiên hệ: fit.agu.edu.vn",
-                "Hướng dẫn sử dụng", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MoTrangHuongDan();
         }
 
         private void mnuThongTinPhanMem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Quản lý Bán hàng v1.0\n© 2024 FIT - AGU", "Thông tin phần mềm",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Quản lý Bán hàng v1.0\n© 2024 FIT - AGU\n\nKhoa Công nghệ Thông tin\nTrường Đại học An Giang",
+                "Thông tin phần mềm", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void lblLienKet_Click(object sender, EventArgs e)
         {
-            ProcessStartInfo info = new ProcessStartInfo
+            Process.Start(new ProcessStartInfo
             {
-                FileName = "explorer.exe",
-                Arguments = "https://fit.agu.edu.vn"
-            };
-            Process.Start(info);
+                FileName = "https://fit.agu.edu.vn",
+                UseShellExecute = true
+            });
         }
     }
 }

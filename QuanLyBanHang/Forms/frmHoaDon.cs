@@ -14,6 +14,7 @@ namespace QuanLyBanHang.Forms
         public frmHoaDon()
         {
             InitializeComponent();
+            HelpSupport.DangKy(this);
         }
 
         private void frmHoaDon_Load(object sender, EventArgs e)

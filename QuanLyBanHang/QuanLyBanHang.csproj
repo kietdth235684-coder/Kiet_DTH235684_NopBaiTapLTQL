@@ -26,6 +26,11 @@
     <None Update="App.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <!-- Help files – copy to output so F1 / menu Hướng dẫn works at runtime -->
+    <None Update="Help\index.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <!-- RDLC Reports -->
     <EmbeddedResource Include="Reports\rptThongKeSanPham.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -35,6 +40,10 @@
     <EmbeddedResource Include="Reports\rptInHoaDon.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <!-- Publish profile -->
+    <None Update="publish\PublishProfile.pubxml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

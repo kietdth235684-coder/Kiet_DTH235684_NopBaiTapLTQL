@@ -14,6 +14,7 @@ namespace QuanLyBanHang.Forms
         public frmHoaDon_ChiTiet(int maHoaDon = 0, bool readOnly = false)
         {
             InitializeComponent();
+            HelpSupport.DangKy(this);
             id = maHoaDon;
             isReadOnly = readOnly;
         }

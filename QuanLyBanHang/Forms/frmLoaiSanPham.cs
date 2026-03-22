@@ -14,6 +14,7 @@ namespace QuanLyBanHang.Forms
         public frmLoaiSanPham()
         {
             InitializeComponent();
+            HelpSupport.DangKy(this);
         }
 
         private void BatTatChucNang(bool giaTri)

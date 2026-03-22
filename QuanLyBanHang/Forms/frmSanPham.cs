@@ -15,6 +15,7 @@ namespace QuanLyBanHang.Forms
         public frmSanPham()
         {
             InitializeComponent();
+            HelpSupport.DangKy(this);
             if (!Directory.Exists(imagesFolder))
                 Directory.CreateDirectory(imagesFolder);
         }

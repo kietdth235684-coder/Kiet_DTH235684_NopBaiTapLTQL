@@ -16,6 +16,7 @@ namespace QuanLyBanHang.Reports
         public frmThongKeSanPham()
         {
             InitializeComponent();
+            HelpSupport.DangKy(this);
         }
 
         // Đưa dữ liệu Loại sản phẩm vào ComboBox
