@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner"
+        xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition">
+  <ReportParameters>
+    <ReportParameter Name="MoTaKetQuaHienThi">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Mô tả kết quả</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <DataSources>
+    <DataSource Name="QLBHDataSet">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DanhSachHoaDon">
+      <Query>
+        <DataSourceName>QLBHDataSet</DataSourceName>
+        <CommandText />
+      </Query>
+      <Fields>
+        <Field Name="ID"><DataField>ID</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
+        <Field Name="HoVaTenNhanVien"><DataField>HoVaTenNhanVien</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+        <Field Name="HoVaTenKhachHang"><DataField>HoVaTenKhachHang</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+        <Field Name="NgayLap"><DataField>NgayLap</DataField><rd:TypeName>System.DateTime</rd:TypeName></Field>
+        <Field Name="TongTienHoaDon"><DataField>TongTienHoaDon</DataField><rd:TypeName>System.Double</rd:TypeName></Field>
+        <Field Name="GhiChuHoaDon"><DataField>GhiChuHoaDon</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <PageWidth>21cm</PageWidth>
+  <PageHeight>29.7cm</PageHeight>
+  <LeftMargin>2cm</LeftMargin>
+  <RightMargin>1.5cm</RightMargin>
+  <TopMargin>1.5cm</TopMargin>
+  <BottomMargin>1.5cm</BottomMargin>
+  <Body>
+    <ReportItems>
+      <Textbox Name="txtTitle">
+        <Value>THỐNG KÊ DOANH THU</Value>
+        <Style>
+          <FontSize>16pt</FontSize>
+          <FontWeight>Bold</FontWeight>
+          <TextAlign>Center</TextAlign>
+        </Style>
+        <Top>0cm</Top>
+        <Left>0cm</Left>
+        <Width>17.4cm</Width>
+        <Height>1cm</Height>
+      </Textbox>
+      <Textbox Name="txtMoTa">
+        <Value>=Parameters!MoTaKetQuaHienThi.Value</Value>
+        <Style>
+          <FontStyle>Italic</FontStyle>
+          <TextAlign>Center</TextAlign>
+        </Style>
+        <Top>1cm</Top>
+        <Left>0cm</Left>
+        <Width>17.4cm</Width>
+        <Height>0.6cm</Height>
+      </Textbox>
+      <Tablix Name="tblDanhSachHoaDon">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn><Width>1cm</Width></TablixColumn>
+            <TablixColumn><Width>4cm</Width></TablixColumn>
+            <TablixColumn><Width>4cm</Width></TablixColumn>
+            <TablixColumn><Width>2.5cm</Width></TablixColumn>
+            <TablixColumn><Width>3cm</Width></TablixColumn>
+            <TablixColumn><Width>2.9cm</Width></TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.6cm</Height>
+              <TablixCells>
+                <TablixCell><CellContents><Textbox Name="hSTT"><Value>TT</Value><Style><FontWeight>Bold</FontWeight><BackgroundColor>LightGray</BackgroundColor><TextAlign>Center</TextAlign></Style></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="hNV"><Value>Nhân viên</Value><Style><FontWeight>Bold</FontWeight><BackgroundColor>LightGray</BackgroundColor></Style></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="hKH"><Value>Khách hàng</Value><Style><FontWeight>Bold</FontWeight><BackgroundColor>LightGray</BackgroundColor></Style></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="hNgay"><Value>Ngày lập</Value><Style><FontWeight>Bold</FontWeight><BackgroundColor>LightGray</BackgroundColor></Style></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="hTong"><Value>Tổng tiền</Value><Style><FontWeight>Bold</FontWeight><BackgroundColor>LightGray</BackgroundColor><TextAlign>Right</TextAlign></Style></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="hGhi"><Value>Ghi chú</Value><Style><FontWeight>Bold</FontWeight><BackgroundColor>LightGray</BackgroundColor></Style></Textbox></CellContents></TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.6cm</Height>
+              <TablixCells>
+                <TablixCell><CellContents><Textbox Name="dSTT"><Value>=RowNumber(Nothing)</Value><Style><TextAlign>Center</TextAlign></Style></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="dNV"><Value>=Fields!HoVaTenNhanVien.Value</Value></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="dKH"><Value>=Fields!HoVaTenKhachHang.Value</Value></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="dNgay"><Value>=Fields!NgayLap.Value</Value><Style><Format>dd/MM/yyyy</Format></Style></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="dTong"><Value>=Fields!TongTienHoaDon.Value</Value><Style><TextAlign>Right</TextAlign><Format>N0</Format></Style></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="dGhi"><Value>=Fields!GhiChuHoaDon.Value</Value></Textbox></CellContents></TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember /><TablixMember /><TablixMember /><TablixMember /><TablixMember /><TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember><KeepWithGroup>After</KeepWithGroup></TablixMember>
+            <TablixMember><Group Name="Detail" /></TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>DanhSachHoaDon</DataSetName>
+        <Top>1.8cm</Top>
+        <Left>0cm</Left>
+        <Width>17.4cm</Width>
+      </Tablix>
+    </ReportItems>
+    <Style />
+  </Body>
+</Report>

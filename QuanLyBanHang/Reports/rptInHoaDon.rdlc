@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner"
+        xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition">
+  <ReportParameters>
+    <ReportParameter Name="NgayLap">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Ngày lập</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="NguoiBan_Ten">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Tên người bán</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="NguoiBan_DiaChi">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Địa chỉ người bán</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="NguoiBan_MaSoThue">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Mã số thuế người bán</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="NguoiMua_Ten">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Tên người mua</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="NguoiMua_DiaChi">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Địa chỉ người mua</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="NguoiMua_MaSoThue">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Mã số thuế người mua</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="TongTien">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Tổng tiền</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <DataSources>
+    <DataSource Name="QLBHDataSet">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DanhSachHoaDon_ChiTiet">
+      <Query>
+        <DataSourceName>QLBHDataSet</DataSourceName>
+        <CommandText />
+      </Query>
+      <Fields>
+        <Field Name="ID"><DataField>ID</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
+        <Field Name="HoaDonID"><DataField>HoaDonID</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
+        <Field Name="SanPhamID"><DataField>SanPhamID</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
+        <Field Name="TenSanPham"><DataField>TenSanPham</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+        <Field Name="SoLuongBan"><DataField>SoLuongBan</DataField><rd:TypeName>System.Int16</rd:TypeName></Field>
+        <Field Name="DonGiaBan"><DataField>DonGiaBan</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
+        <Field Name="ThanhTien"><DataField>ThanhTien</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <PageWidth>21cm</PageWidth>
+  <PageHeight>29.7cm</PageHeight>
+  <LeftMargin>2cm</LeftMargin>
+  <RightMargin>1.5cm</RightMargin>
+  <TopMargin>1.5cm</TopMargin>
+  <BottomMargin>1.5cm</BottomMargin>
+  <Body>
+    <ReportItems>
+      <!-- Header row: company left, country right -->
+      <Textbox Name="txtCongTy">
+        <Value>=Parameters!NguoiBan_Ten.Value</Value>
+        <Style><FontWeight>Bold</FontWeight></Style>
+        <Top>0cm</Top><Left>0cm</Left><Width>8cm</Width><Height>0.6cm</Height>
+      </Textbox>
+      <Textbox Name="txtQuocHieu">
+        <Value>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</Value>
+        <Style><FontWeight>Bold</FontWeight><TextAlign>Center</TextAlign></Style>
+        <Top>0cm</Top><Left>8cm</Left><Width>9.4cm</Width><Height>0.6cm</Height>
+      </Textbox>
+      <Textbox Name="txtDocLap">
+        <Value>Độc lập - Tự do - Hạnh phúc</Value>
+        <Style><TextAlign>Center</TextAlign></Style>
+        <Top>0.6cm</Top><Left>8cm</Left><Width>9.4cm</Width><Height>0.5cm</Height>
+      </Textbox>
+      <!-- Title -->
+      <Textbox Name="txtTitle">
+        <Value>HÓA ĐƠN BÁN HÀNG</Value>
+        <Style><FontSize>14pt</FontSize><FontWeight>Bold</FontWeight><TextAlign>Center</TextAlign></Style>
+        <Top>1.4cm</Top><Left>4cm</Left><Width>9.4cm</Width><Height>0.8cm</Height>
+      </Textbox>
+      <Textbox Name="txtNgayLap">
+        <Value>=Parameters!NgayLap.Value</Value>
+        <Style><TextAlign>Center</TextAlign></Style>
+        <Top>2.2cm</Top><Left>4cm</Left><Width>9.4cm</Width><Height>0.5cm</Height>
+      </Textbox>
+      <!-- Seller info -->
+      <Textbox Name="lblDonVi"><Value>Đơn vị bán hàng:</Value>
+        <Top>3cm</Top><Left>0cm</Left><Width>4cm</Width><Height>0.5cm</Height></Textbox>
+      <Textbox Name="valDonVi"><Value>=Parameters!NguoiBan_Ten.Value</Value>
+        <Style><FontWeight>Bold</FontWeight></Style>
+        <Top>3cm</Top><Left>4cm</Left><Width>9.4cm</Width><Height>0.5cm</Height></Textbox>
+      <Textbox Name="lblDiaChi1"><Value>Địa chỉ:</Value>
+        <Top>3.6cm</Top><Left>0cm</Left><Width>4cm</Width><Height>0.5cm</Height></Textbox>
+      <Textbox Name="valDiaChi1"><Value>=Parameters!NguoiBan_DiaChi.Value</Value>
+        <Style><FontStyle>Italic</FontStyle></Style>
+        <Top>3.6cm</Top><Left>4cm</Left><Width>9.4cm</Width><Height>0.5cm</Height></Textbox>
+      <Textbox Name="lblMST1"><Value>Mã số thuế:</Value>
+        <Top>4.2cm</Top><Left>0cm</Left><Width>4cm</Width><Height>0.5cm</Height></Textbox>
+      <Textbox Name="valMST1"><Value>=Parameters!NguoiBan_MaSoThue.Value</Value>
+        <Top>4.2cm</Top><Left>4cm</Left><Width>9.4cm</Width><Height>0.5cm</Height></Textbox>
+      <!-- Buyer info -->
+      <Textbox Name="lblNguoiMua"><Value>Họ tên người mua hàng:</Value>
+        <Top>4.8cm</Top><Left>0cm</Left><Width>4cm</Width><Height>0.5cm</Height></Textbox>
+      <Textbox Name="valNguoiMua"><Value>=Parameters!NguoiMua_Ten.Value</Value>
+        <Style><FontWeight>Bold</FontWeight></Style>
+        <Top>4.8cm</Top><Left>4cm</Left><Width>9.4cm</Width><Height>0.5cm</Height></Textbox>
+      <Textbox Name="lblDiaChi2"><Value>Địa chỉ:</Value>
+        <Top>5.4cm</Top><Left>0cm</Left><Width>4cm</Width><Height>0.5cm</Height></Textbox>
+      <Textbox Name="valDiaChi2"><Value>=Parameters!NguoiMua_DiaChi.Value</Value>
+        <Style><FontStyle>Italic</FontStyle></Style>
+        <Top>5.4cm</Top><Left>4cm</Left><Width>9.4cm</Width><Height>0.5cm</Height></Textbox>
+      <Textbox Name="lblMST2"><Value>Mã số thuế:</Value>
+        <Top>6cm</Top><Left>0cm</Left><Width>4cm</Width><Height>0.5cm</Height></Textbox>
+      <Textbox Name="valMST2"><Value>=Parameters!NguoiMua_MaSoThue.Value</Value>
+        <Top>6cm</Top><Left>4cm</Left><Width>9.4cm</Width><Height>0.5cm</Height></Textbox>
+      <!-- Detail table -->
+      <Tablix Name="tblChiTiet">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn><Width>1cm</Width></TablixColumn>
+            <TablixColumn><Width>8.4cm</Width></TablixColumn>
+            <TablixColumn><Width>2.5cm</Width></TablixColumn>
+            <TablixColumn><Width>2.5cm</Width></TablixColumn>
+            <TablixColumn><Width>2.5cm</Width></TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.6cm</Height>
+              <TablixCells>
+                <TablixCell><CellContents><Textbox Name="hTT"><Value>TT</Value><Style><FontWeight>Bold</FontWeight><BackgroundColor>LightGray</BackgroundColor><TextAlign>Center</TextAlign></Style></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="hHH"><Value>Tên hàng hóa, dịch vụ</Value><Style><FontWeight>Bold</FontWeight><BackgroundColor>LightGray</BackgroundColor></Style></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="hSL"><Value>Số lượng</Value><Style><FontWeight>Bold</FontWeight><BackgroundColor>LightGray</BackgroundColor><TextAlign>Center</TextAlign></Style></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="hDG"><Value>Đơn giá</Value><Style><FontWeight>Bold</FontWeight><BackgroundColor>LightGray</BackgroundColor><TextAlign>Right</TextAlign></Style></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="hThTien"><Value>Thành tiền</Value><Style><FontWeight>Bold</FontWeight><BackgroundColor>LightGray</BackgroundColor><TextAlign>Right</TextAlign></Style></Textbox></CellContents></TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.6cm</Height>
+              <TablixCells>
+                <TablixCell><CellContents><Textbox Name="dTT"><Value>=RowNumber(Nothing)</Value><Style><TextAlign>Center</TextAlign></Style></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="dHH"><Value>=Fields!TenSanPham.Value</Value></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="dSL"><Value>=Fields!SoLuongBan.Value</Value><Style><TextAlign>Center</TextAlign></Style></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="dDG"><Value>=Fields!DonGiaBan.Value</Value><Style><TextAlign>Right</TextAlign><Format>N0</Format></Style></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="dThTien"><Value>=Fields!ThanhTien.Value</Value><Style><TextAlign>Right</TextAlign><Format>N0</Format></Style></Textbox></CellContents></TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember /><TablixMember /><TablixMember /><TablixMember /><TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember><KeepWithGroup>After</KeepWithGroup></TablixMember>
+            <TablixMember><Group Name="Detail" /></TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>DanhSachHoaDon_ChiTiet</DataSetName>
+        <Top>6.8cm</Top>
+        <Left>0cm</Left>
+        <Width>17.4cm</Width>
+      </Tablix>
+      <!-- Total -->
+      <Textbox Name="lblTongCong">
+        <Value>Tổng cộng tiền thanh toán:</Value>
+        <Style><FontWeight>Bold</FontWeight><TextAlign>Right</TextAlign></Style>
+        <Top>10cm</Top><Left>0cm</Left><Width>14.9cm</Width><Height>0.6cm</Height>
+      </Textbox>
+      <Textbox Name="valTongTien">
+        <Value>=Parameters!TongTien.Value</Value>
+        <Style><FontWeight>Bold</FontWeight><TextAlign>Right</TextAlign><Format>N0</Format></Style>
+        <Top>10cm</Top><Left>14.9cm</Left><Width>2.5cm</Width><Height>0.6cm</Height>
+      </Textbox>
+      <!-- Signatures -->
+      <Textbox Name="txtNguoiMuaKy">
+        <Value>Người mua hàng&#xA;(Ký và ghi rõ họ tên)</Value>
+        <Style><TextAlign>Center</TextAlign></Style>
+        <Top>11cm</Top><Left>1cm</Left><Width>6cm</Width><Height>1cm</Height>
+      </Textbox>
+      <Textbox Name="txtNguoiBanKy">
+        <Value>Người bán hàng&#xA;(Ký và ghi rõ họ tên)</Value>
+        <Style><TextAlign>Center</TextAlign></Style>
+        <Top>11cm</Top><Left>10.4cm</Left><Width>6cm</Width><Height>1cm</Height>
+      </Textbox>
+    </ReportItems>
+    <Style />
+  </Body>
+</Report>

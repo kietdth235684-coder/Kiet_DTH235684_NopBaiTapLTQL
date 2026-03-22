@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner"
+        xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition">
+  <ReportParameters>
+    <ReportParameter Name="MoTaKetQuaHienThi">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Mô tả kết quả</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <DataSources>
+    <DataSource Name="QLBHDataSet">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DanhSachSanPham">
+      <Query>
+        <DataSourceName>QLBHDataSet</DataSourceName>
+        <CommandText />
+      </Query>
+      <Fields>
+        <Field Name="ID"><DataField>ID</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
+        <Field Name="HangSanXuatID"><DataField>HangSanXuatID</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
+        <Field Name="TenHangSanXuat"><DataField>TenHangSanXuat</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+        <Field Name="LoaiSanPhamID"><DataField>LoaiSanPhamID</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
+        <Field Name="TenLoai"><DataField>TenLoai</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+        <Field Name="TenSanPham"><DataField>TenSanPham</DataField><rd:TypeName>System.String</rd:TypeName></Field>
+        <Field Name="DonGia"><DataField>DonGia</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
+        <Field Name="SoLuong"><DataField>SoLuong</DataField><rd:TypeName>System.Int32</rd:TypeName></Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <PageWidth>21cm</PageWidth>
+  <PageHeight>29.7cm</PageHeight>
+  <LeftMargin>2cm</LeftMargin>
+  <RightMargin>1.5cm</RightMargin>
+  <TopMargin>1.5cm</TopMargin>
+  <BottomMargin>1.5cm</BottomMargin>
+  <Body>
+    <ReportItems>
+      <Textbox Name="txtTitle">
+        <Value>THỐNG KÊ SẢN PHẨM</Value>
+        <Style>
+          <FontSize>16pt</FontSize>
+          <FontWeight>Bold</FontWeight>
+          <TextAlign>Center</TextAlign>
+        </Style>
+        <Top>0cm</Top>
+        <Left>0cm</Left>
+        <Width>17.4cm</Width>
+        <Height>1cm</Height>
+      </Textbox>
+      <Textbox Name="txtMoTa">
+        <Value>=Parameters!MoTaKetQuaHienThi.Value</Value>
+        <Style>
+          <FontStyle>Italic</FontStyle>
+          <TextAlign>Center</TextAlign>
+        </Style>
+        <Top>1cm</Top>
+        <Left>0cm</Left>
+        <Width>17.4cm</Width>
+        <Height>0.6cm</Height>
+      </Textbox>
+      <Textbox Name="txtNgayLap">
+        <Value>="Ngày lập: " &amp; Today()</Value>
+        <Style>
+          <TextAlign>Right</TextAlign>
+        </Style>
+        <Top>1.6cm</Top>
+        <Left>0cm</Left>
+        <Width>17.4cm</Width>
+        <Height>0.5cm</Height>
+      </Textbox>
+      <Tablix Name="tblDanhSachSanPham">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn><Width>1cm</Width></TablixColumn>
+            <TablixColumn><Width>3.5cm</Width></TablixColumn>
+            <TablixColumn><Width>2.5cm</Width></TablixColumn>
+            <TablixColumn><Width>5cm</Width></TablixColumn>
+            <TablixColumn><Width>2.5cm</Width></TablixColumn>
+            <TablixColumn><Width>1.5cm</Width></TablixColumn>
+            <TablixColumn><Width>1.4cm</Width></TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.6cm</Height>
+              <TablixCells>
+                <TablixCell><CellContents><Textbox Name="hSTT"><Value>STT</Value><Style><FontWeight>Bold</FontWeight><BackgroundColor>LightGray</BackgroundColor><TextAlign>Center</TextAlign></Style></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="hHang"><Value>Hãng sản xuất</Value><Style><FontWeight>Bold</FontWeight><BackgroundColor>LightGray</BackgroundColor></Style></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="hLoai"><Value>Loại</Value><Style><FontWeight>Bold</FontWeight><BackgroundColor>LightGray</BackgroundColor></Style></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="hTen"><Value>Tên sản phẩm</Value><Style><FontWeight>Bold</FontWeight><BackgroundColor>LightGray</BackgroundColor></Style></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="hDonGia"><Value>Đơn giá</Value><Style><FontWeight>Bold</FontWeight><BackgroundColor>LightGray</BackgroundColor><TextAlign>Right</TextAlign></Style></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="hSL"><Value>SL</Value><Style><FontWeight>Bold</FontWeight><BackgroundColor>LightGray</BackgroundColor><TextAlign>Center</TextAlign></Style></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="hThanhTien"><Value>Thành tiền</Value><Style><FontWeight>Bold</FontWeight><BackgroundColor>LightGray</BackgroundColor><TextAlign>Right</TextAlign></Style></Textbox></CellContents></TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.6cm</Height>
+              <TablixCells>
+                <TablixCell><CellContents><Textbox Name="dSTT"><Value>=RowNumber(Nothing)</Value><Style><TextAlign>Center</TextAlign></Style></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="dHang"><Value>=Fields!TenHangSanXuat.Value</Value></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="dLoai"><Value>=Fields!TenLoai.Value</Value></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="dTen"><Value>=Fields!TenSanPham.Value</Value></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="dDonGia"><Value>=Fields!DonGia.Value</Value><Style><TextAlign>Right</TextAlign><Format>N0</Format></Style></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="dSL"><Value>=Fields!SoLuong.Value</Value><Style><TextAlign>Center</TextAlign></Style></Textbox></CellContents></TablixCell>
+                <TablixCell><CellContents><Textbox Name="dThanhTien"><Value>=Fields!SoLuong.Value * Fields!DonGia.Value</Value><Style><TextAlign>Right</TextAlign><Format>N0</Format></Style></Textbox></CellContents></TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember /><TablixMember /><TablixMember /><TablixMember /><TablixMember /><TablixMember /><TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember><KeepWithGroup>After</KeepWithGroup></TablixMember>
+            <TablixMember><Group Name="Detail" /></TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>DanhSachSanPham</DataSetName>
+        <Top>2.2cm</Top>
+        <Left>0cm</Left>
+        <Width>17.4cm</Width>
+      </Tablix>
+    </ReportItems>
+    <Style />
+  </Body>
+</Report>
